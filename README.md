@@ -34,7 +34,7 @@ Prieš pradedant, įsitikinkite, kad turite arba įdiekite šias programas naudo
 * **PHP (>= 8.2):**
   Atidarykite terminalą (PowerShell kaip administratorius arba CMD) ir vykdykite:
     ```powershell
-    choco install php --version=8.2 --params "/InstallDir:C:\tools\php82"
+    choco install php --version=8.4 --params "/InstallDir:C:\tools\php84"
     ```
   (Galite pasirinkti naujesnę 8.x versiją, pvz., 8.3, ir kitą diegimo vietą. Po diegimo gali reikėti perkrauti terminalą.)
   Patikrinkite: `php --version`
