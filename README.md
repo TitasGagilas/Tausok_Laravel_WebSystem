@@ -60,7 +60,6 @@ Prieš pradedant, įsitikinkite, kad turite arba įdiekite šias programas naudo
 ### 2. Projekto Paruošimas
 
 1.  **Klonuokite arba Nukopijuokite Projektą:**
-    Jei projektas yra Git repozitorijoje:
     ```bash
     git clone https://github.com/TitasGagilas/Tausok_Laravel_WebSystem
     cd Tausok_Laravel_WebSystem
@@ -100,8 +99,6 @@ Prieš pradedant, įsitikinkite, kad turite arba įdiekite šias programas naudo
         DB_CONNECTION=sqlite
         DB_DATABASE=database/database.sqlite # Kelias skaičiuojamas nuo projekto šaknies
 
-        # Kiti nustatymai pagal poreikį (pvz., Mailtrap el. pašto testavimui)
-        MAIL_MAILER=log # Kūrimo metu saugu naudoti log, kad laiškai nebūtų siunčiami
         ```
 
 5.  **Vykdykite Duomenų Bazės Migracijas:**
@@ -124,14 +121,18 @@ Prieš pradedant, įsitikinkite, kad turite arba įdiekite šias programas naudo
 
 ### 3. Projekto Paleidimas
 
-1.  **Paleiskite Laravel Kūrimo Serverį:**
+1.**Paleiskite Front-End Resursus:**
+    ```bash
+    npm run dev
+    ```
+2.  **Paleiskite Laravel Kūrimo Serverį:**
     ```bash
     php artisan serve
     ```
     Terminalas parodys adresą, kuriuo veikia serveris (paprastai `http://127.0.0.1:8000`).
 
-2.  **Atidarykite Aplikaciją Naršyklėje:**
-    Įveskite terminale parodytą adresą (pvz., `http://127.0.0.1:8000`) į savo interneto naršyklę. Jūsų "Tausok" aplikacija turėtų pasileisti.
+3.  **Atidarykite Aplikaciją Naršyklėje:**
+    Įveskite terminale parodytą adresą (pvz., `http://127.0.0.1:8000`) į savo interneto naršyklę.
 
 ## Papildoma Informacija
 
