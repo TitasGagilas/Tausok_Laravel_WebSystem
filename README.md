@@ -85,10 +85,6 @@ Prieš pradedant, įsitikinkite, kad turite arba įdiekite šias programas naudo
         ```bash
         copy .env.example .env
         ```
-    * Sugeneruokite unikalią aplikacijos raktą:
-        ```bash
-        php artisan key:generate
-        ```
     * Atidarykite `.env` failą su tekstų redaktoriumi ir peržiūrėkite/pakeiskite šiuos nustatymus, jei reikia:
         ```dotenv
         APP_NAME=Tausok
