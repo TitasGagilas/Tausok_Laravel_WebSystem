@@ -72,8 +72,8 @@ Prieš pradedant, įsitikinkite, kad turite arba įdiekite šias programas naudo
 1.  **Klonuokite arba Nukopijuokite Projektą:**
     Jei projektas yra Git repozitorijoje:
     ```bash
-    git clone <jūsų_repozitorijos_url> taupyk-maista
-    cd taupyk-maista
+    git clone https://github.com/TitasGagilas/Tausok_Laravel_WebSystem
+    cd Tausok_Laravel_WebSystem
     ```
     Arba tiesiog nukopijuokite visą projekto aplanką į norimą vietą savo kompiuteryje (pvz., `C:\Projektai\taupyk-maista`) ir pereikite į jį terminale:
     ```bash
