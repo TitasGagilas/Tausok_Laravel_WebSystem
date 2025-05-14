@@ -121,6 +121,7 @@ Prieš pradedant, įsitikinkite, kad turite arba įdiekite šias programas naudo
     ```bash
     npm run dev
     ```
+    
 2.  **Paleiskite Laravel Kūrimo Serverį:**
     ```bash
     php artisan serve
