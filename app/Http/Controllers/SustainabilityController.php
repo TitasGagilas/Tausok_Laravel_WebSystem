@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\DB;   // Duomenų bazės fasadas
 // SustainabilityController klasė paveldi iš bazinės Controller klasės
 class SustainabilityController extends Controller
 {
-    // Savybė (property) SustainabilityService objektui laikyti
     protected $sustainabilityService;
 
     /**
