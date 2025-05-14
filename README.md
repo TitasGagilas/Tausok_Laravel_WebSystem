@@ -38,16 +38,6 @@ Prieš pradedant, įsitikinkite, kad turite arba įdiekite šias programas naudo
     ```
   (Galite pasirinkti naujesnę 8.x versiją, pvz., 8.3, ir kitą diegimo vietą. Po diegimo gali reikėti perkrauti terminalą.)
   Patikrinkite: `php --version`
-  **Svarbu dėl SSL:** Po PHP įdiegimo, jums reikės sukonfigūruoti `php.ini` failą, kad veiktų Composer SSL ryšiai:
-    1.  Atsisiųskite naujausią `cacert.pem` iš [https://curl.se/docs/caextract.html](https://curl.se/docs/caextract.html).
-    2.  Sukurkite aplanką, pvz., `C:\tools\php82\extras\ssl\` ir įdėkite ten `cacert.pem`.
-    3.  Raskite ir redaguokite `php.ini` failą (paprastai `C:\tools\php82\php.ini`).
-    4.  Suraskite arba pridėkite šias eilutes (pakeiskite kelią, jei reikia, ir nuimkite `;` jei eilutės užkomentuotos):
-        ```ini
-        curl.cainfo = "C:/tools/php82/extras/ssl/cacert.pem"
-        openssl.cafile = "C:/tools/php82/extras/ssl/cacert.pem"
-        ```
-    5.  Išsaugokite `php.ini`. Jei naudojate web serverį (ne `php artisan serve`), jį reikės perkrauti.
 
 * **Composer (PHP Paketų Valdymo Įrankis):**
     ```powershell
