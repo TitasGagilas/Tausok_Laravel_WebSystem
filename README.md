@@ -7,8 +7,8 @@
 * Vartotojų registracija ir autentifikacija.
 * Produktų pridėjimas (dviejų žingsnių), redagavimas, sąrašo peržiūra su filtravimu ir rikiavimu.
 * Detalus produktų kiekių valdymas (parduota, paaukota, išmesta, rezervuota) konkrečiai datai.
-* Automatinis produkto likučio skaičiavimas remiantis transakcijomis.
-* Prietaisų skydelis su pagrindiniais rodikliais ir greita produktų apžvalga.
+* Produkto Kiekių Valdymas automatinis produkto likučio skaičiavimas remiantis transakcijomis.
+* Dashboard su pagrindiniais rodikliais ir greita produktų apžvalga.
 * Statistikos puslapis su tvarumo procentu, CO2 sutaupymu, pardavimų/išmetimų diagramomis ir transakcijų istorija.
 * Vartotojo profilio valdymas.
 * Informacinis puslapis apie sistemą ir tvarumo ženklelius.
