@@ -145,14 +145,34 @@ Prieš pradedant, įsitikinkite, kad turite arba įdiekite šias programas naudo
 
 ## Papildoma Informacija
 
-* Jei `composer install` vis tiek meta SSL klaidą net po `php.ini` konfigūravimo, kaip laikiną sprendimą galite pabandyti (prieš `composer install`):
-    ```bash
-    composer config -g -- disable-tls true
+* **Teisių Problemos ("Permission denied"):**
+    Jei vykdant `composer install` (ypač kai bandoma atsisiųsti iš "source" per Git) ar `php artisan storage:link` susiduriate su "Permission denied" klaidomis, įsitikinkite, kad jūsų terminalas turi pakankamai teisių. Kartais padeda **terminalo paleidimas administratoriaus teisėmis** (dešiniu pelės mygtuku ant PowerShell/CMD ikonos -> Run as administrator).
+
+* **PATH Kintamųjų Konfigūravimas (PHP ir Composer):**
+    Jei įdiegėte PHP ir/ar Composer rankiniu būdu (ne per Chocolatey ar Laragon, kurie dažniausiai tai padaro automatiškai) ir komandos `php` ar `composer` neatpažįstamos terminale, jums reikės pridėti jų diegimo katalogus prie Windows PATH aplinkos kintamojo:
+    1.  **Suraskite diegimo kelius:**
+        * PHP: katalogas, kuriame yra `php.exe` (pvz., `C:\php` arba `C:\tools\php82`).
+        * Composer: katalogas, kuriame yra `composer.phar` arba Composer `bin` aplankas (pvz., `C:\ProgramData\ComposerSetup\bin` arba `C:\Users\JūsųVartotojas\AppData\Roaming\Composer\vendor\bin`).
+    2.  **Atidarykite Aplinkos Kintamuosius:**
+        * Windows paieškoje įveskite "environment variables".
+        * Pasirinkite "Edit the system environment variables".
+    3.  **Redaguokite PATH:**
+        * "System Properties" lange, "Advanced" skiltyje, spauskite "Environment Variables...".
+        * "System variables" (arba "User variables", jei norite pakeisti tik savo vartotojui) sąraše raskite kintamąjį pavadinimu `Path`. Pasirinkite jį ir spauskite "Edit...".
+    4.  **Pridėkite Kelius:**
+        * Atsidariusiame lange spauskite "New" ir pridėkite pilną kelią iki PHP katalogo.
+        * Dar kartą spauskite "New" ir pridėkite pilną kelią iki Composer katalogo.
+    5.  **Išsaugokite Pakeitimus:** Spauskite "OK" visuose atidarytuose languose.
+    6.  **Perkraukite Terminalą:** **Būtinai uždarykite ir iš naujo atidarykite visus terminalo langus**, kad pakeitimai įsigaliotų.
+    7.  **Patikrinkite:** Naujame terminale įveskite `php --version` ir `composer --version`. Komandos turėtų būti atpažįstamos.
+
+* **Būtinų PHP Plėtinių Įjungimas `php.ini`:**
+    Laravel ir daugelis PHP projektų reikalauja tam tikrų PHP plėtinių. Įsitikinkite, kad jūsų `php.ini` faile (kurį radote diegdami PHP, pvz., `C:\tools\php82\php.ini`, arba galite rasti kelią įvedę `php --ini` terminale) yra įjungti šie plėtiniai (t.y., eilutė neprasideda kabliataškiu `;`):
+    ```ini
+    extension=fileinfo
+    extension=pdo_sqlite
+    extension=sqlite3
     ```
-  Ir po sėkmingo `composer install` grąžinti:
-    ```bash
-    composer config -g -- disable-tls false
-    ```
-* Jei susiduriate su "Permission denied" klaidomis vykdant `composer install` (ypač kai bandoma atsisiųsti iš "source" per Git), įsitikinkite, kad jūsų terminalas turi pakankamai teisių rašyti į `vendor` katalogą. Kartais padeda terminalo paleidimas administratoriaus teisėmis.
+    Po pakeitimų `php.ini` faile, **išsaugokite jį** ir **perkraukite web serverį** (jei naudojate Apache/Nginx per Laragon klasikiniu būdu) arba **sustabdykite ir vėl paleiskite `php artisan serve`** (Laragon atveju, galite tiesiog "Stop" ir "Start All" servisus Laragon programoje).
 
 Sėkmės paleidžiant projektą!
