@@ -1,66 +1,158 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Tausok - Maisto Švaistymo Mažinimo Sistema
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+"Tausok" yra Laravel pagrindu sukurta web aplikacija, skirta padėti maisto įstaigoms (kepyklėlėms, restoranams ir pan.) efektyviai valdyti produktų likučius, sekti jų galiojimo terminus, registruoti pardavimus, nurašymus ar aukojimus. Sistemos tikslas – mažinti maisto švaistymą, didinti veiklos tvarumą ir padėti vartotojams lengviau stebėti savo pasiekimus šioje srityje per statistiką ir pasiekimų ženklelius.
 
-## About Laravel
+## Pagrindinės Funkcijos
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+* Vartotojų registracija ir autentifikacija.
+* Produktų pridėjimas (dviejų žingsnių), redagavimas, sąrašo peržiūra su filtravimu ir rikiavimu.
+* Detalus produktų kiekių valdymas (parduota, paaukota, išmesta, rezervuota) konkrečiai datai.
+* Automatinis produkto likučio skaičiavimas remiantis transakcijomis.
+* Prietaisų skydelis su pagrindiniais rodikliais ir greita produktų apžvalga.
+* Statistikos puslapis su tvarumo procentu, CO2 sutaupymu, pardavimų/išmetimų diagramomis ir transakcijų istorija.
+* Vartotojo profilio valdymas.
+* Informacinis puslapis apie sistemą ir tvarumo ženklelius.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Technologijos
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* **Backend:** PHP 8.2+, Laravel 12
+* **Frontend:** Tailwind CSS, Alpine.js, Chart.js, Vite
+* **Duomenų bazė:** SQLite (pagal numatymą)
+* **Paketų valdymas:** Composer (PHP), npm (Node.js)
 
-## Learning Laravel
+## Diegimo ir Konfigūravimo Instrukcijos (Windows PC naudojant Terminalą ir Chocolatey)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Šios instrukcijos skirtos paleisti projektą vietinėje kūrimo aplinkoje Windows operacinėje sistemoje.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 1. Būtinos Programos
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Prieš pradedant, įsitikinkite, kad turite arba įdiekite šias programas naudodami Chocolatey (arba rankiniu būdu, jei pageidaujate). **Rekomenduojama naudoti PowerShell kaip administratoriui Chocolatey diegimui ir komandoms.**
 
-## Laravel Sponsors
+* **Chocolatey (Paketų Valdymo Įrankis):**
+  Jei neturite, įdiekite sekdami instrukcijas [chocolatey.org/install](https://chocolatey.org/install). Atidarykite PowerShell kaip administratorius ir vykdykite nurodytą komandą. Po įdiegimo perkraukite terminalą.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+* **PHP (>= 8.2):**
+  Atidarykite terminalą (PowerShell kaip administratorius arba CMD) ir vykdykite:
+    ```powershell
+    choco install php --version=8.2 --params "/InstallDir:C:\tools\php82"
+    ```
+  (Galite pasirinkti naujesnę 8.x versiją, pvz., 8.3, ir kitą diegimo vietą. Po diegimo gali reikėti perkrauti terminalą.)
+  Patikrinkite: `php --version`
+  **Svarbu dėl SSL:** Po PHP įdiegimo, jums reikės sukonfigūruoti `php.ini` failą, kad veiktų Composer SSL ryšiai:
+    1.  Atsisiųskite naujausią `cacert.pem` iš [https://curl.se/docs/caextract.html](https://curl.se/docs/caextract.html).
+    2.  Sukurkite aplanką, pvz., `C:\tools\php82\extras\ssl\` ir įdėkite ten `cacert.pem`.
+    3.  Raskite ir redaguokite `php.ini` failą (paprastai `C:\tools\php82\php.ini`).
+    4.  Suraskite arba pridėkite šias eilutes (pakeiskite kelią, jei reikia, ir nuimkite `;` jei eilutės užkomentuotos):
+        ```ini
+        curl.cainfo = "C:/tools/php82/extras/ssl/cacert.pem"
+        openssl.cafile = "C:/tools/php82/extras/ssl/cacert.pem"
+        ```
+    5.  Išsaugokite `php.ini`. Jei naudojate web serverį (ne `php artisan serve`), jį reikės perkrauti.
 
-### Premium Partners
+* **Composer (PHP Paketų Valdymo Įrankis):**
+    ```powershell
+    choco install composer
+    ```
+  (Paprastai įdiegus PHP per Chocolatey, Composer nereikia diegti atskirai, jei pasirinkote atitinkamus parametrus, bet ši komanda užtikrins, kad jis yra.)
+  Patikrinkite: `composer --version`
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+* **Node.js (su npm):**
+    ```powershell
+    choco install nodejs-lts
+    ```
+  Patikrinkite: `node --version` ir `npm --version`
 
-## Contributing
+* **Git (Versijų Kontrolės Sistema - Rekomenduojama):**
+    ```powershell
+    choco install git
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 2. Projekto Paruošimas
 
-## Code of Conduct
+1.  **Klonuokite arba Nukopijuokite Projektą:**
+    Jei projektas yra Git repozitorijoje:
+    ```bash
+    git clone https://github.com/TitasGagilas/Tausok_Laravel_WebSystem
+    cd Tausok_Laravel_WebSystem
+    ```
+    Arba tiesiog nukopijuokite visą projekto aplanką į norimą vietą savo kompiuteryje (pvz., `C:\Projektai\taupyk-maista`) ir pereikite į jį terminale:
+    ```bash
+    cd C:\Projektai\taupyk-maista
+    ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+2.  **Įdiekite PHP Priklausomybes:**
+    ```bash
+    composer install
+    ```
+    *(Jei susiduriate su SSL klaidomis, įsitikinkite, kad `php.ini` sukonfigūruotas teisingai, kaip aprašyta PHP diegimo žingsnyje. Gali prireikti terminalą paleisti kaip administratoriui, jei `composer install` bando rašyti į apsaugotas direktorijas arba jei Windows teisių problemos trukdo Git operacijoms, kai paketai bandomi atsisiųsti iš "source")*
 
-## Security Vulnerabilities
+3.  **Įdiekite Node.js Priklausomybes:**
+    ```bash
+    npm install
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4.  **Sukonfigūruokite Aplinkos Failą:**
+    * Nukopijuokite pavyzdinį `.env` failą:
+        ```bash
+        copy .env.example .env
+        ```
+    * Sugeneruokite unikalią aplikacijos raktą:
+        ```bash
+        php artisan key:generate
+        ```
+    * Atidarykite `.env` failą su tekstų redaktoriumi ir peržiūrėkite/pakeiskite šiuos nustatymus, jei reikia:
+        ```dotenv
+        APP_NAME=Tausok
+        APP_ENV=local
+        APP_DEBUG=true
+        APP_URL=http://localhost:8000
 
-## License
+        DB_CONNECTION=sqlite
+        DB_DATABASE=database/database.sqlite # Kelias skaičiuojamas nuo projekto šaknies
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+        # Kiti nustatymai pagal poreikį (pvz., Mailtrap el. pašto testavimui)
+        MAIL_MAILER=log # Kūrimo metu saugu naudoti log, kad laiškai nebūtų siunčiami
+        ```
+
+5.  **Vykdykite Duomenų Bazės Migracijas:**
+    (Tai sukurs `database/database.sqlite` failą, jei jo nėra, ir visas reikiamas lenteles)
+    ```bash
+    php artisan migrate
+    ```
+
+6.  **Sukurkite Saugyklos Nuorodą:**
+    (Tai leis pasiekti failus iš `storage/app/public` per `public/storage`)
+    ```bash
+    php artisan storage:link
+    ```
+    *(Windows sistemoje šiai komandai gali reikėti administratoriaus teisių terminalui)*
+
+7.  **Sukompiliuokite Front-End Resursus:**
+    ```bash
+    npm run build
+    ```
+
+### 3. Projekto Paleidimas
+
+1.  **Paleiskite Laravel Kūrimo Serverį:**
+    ```bash
+    php artisan serve
+    ```
+    Terminalas parodys adresą, kuriuo veikia serveris (paprastai `http://127.0.0.1:8000`).
+
+2.  **Atidarykite Aplikaciją Naršyklėje:**
+    Įveskite terminale parodytą adresą (pvz., `http://127.0.0.1:8000`) į savo interneto naršyklę. Jūsų "Tausok" aplikacija turėtų pasileisti.
+
+## Papildoma Informacija
+
+* Jei `composer install` vis tiek meta SSL klaidą net po `php.ini` konfigūravimo, kaip laikiną sprendimą galite pabandyti (prieš `composer install`):
+    ```bash
+    composer config -g -- disable-tls true
+    ```
+  Ir po sėkmingo `composer install` grąžinti:
+    ```bash
+    composer config -g -- disable-tls false
+    ```
+* Jei susiduriate su "Permission denied" klaidomis vykdant `composer install` (ypač kai bandoma atsisiųsti iš "source" per Git), įsitikinkite, kad jūsų terminalas turi pakankamai teisių rašyti į `vendor` katalogą. Kartais padeda terminalo paleidimas administratoriaus teisėmis.
+
+Sėkmės paleidžiant projektą!
